@@ -39,8 +39,13 @@ a project root or not."
   :type '(repeat function)
   :group 'direx-project)
 
+(defcustom direx-project:vc-dirs '(".git" ".hg" ".bzr" "_darcs")
+  "List of the hidden directories for version control systems."
+  :type '(repeat string)
+  :group 'direx-project)
+
 (defun direx-project:vc-root-p (dirname)
-  (loop for vc-dir in '(".git" ".hg" ".bzr")
+  (loop for vc-dir in direx-project:vc-dirs
         thereis (file-exists-p (expand-file-name vc-dir dirname))))
 
 (defun direx-project:project-root-p (dirname)
